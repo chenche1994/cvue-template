@@ -1,8 +1,12 @@
 const path = require('path')
 const {VUE_APP_DOMAIN_BASE} = process.env
+const packageName = require('./package.json').name
 
 module.exports = {
   devServer: {
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
     disableHostCheck: true,
     proxy:{
       '/common-api': {
@@ -22,6 +26,11 @@ module.exports = {
       alias: {
         '@': path.resolve('src'),
       },
+    },
+    output: {
+      library: packageName, // 主应用注册微应用的名称，一般同项目名保持一致
+      libraryTarget: 'umd',
+      jsonpFunction: `webpackJsonp_${packageName}`
     }
   },
   chainWebpack: config => {
