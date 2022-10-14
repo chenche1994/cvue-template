@@ -1,5 +1,5 @@
 {
-  "name": "micro-common",
+  "name": "{{projectname}}",
   "version": "0.1.0",
   "private": true,
   "scripts": {
